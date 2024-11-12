@@ -1,4 +1,4 @@
-/*
+﻿/*
 
 Tite Chapter 5 Exercise 11 - Population
 File name:Chapter5Ex11_YaroslavShevchenko.cpp
@@ -18,10 +18,17 @@ which one would be at the end of the line. You may assume that no two students h
 
 Input Validation: Do not accept a number less than 1 or greater than 25 for the number of students.
 
+
+Using Files—Student Line Up -Create a second branch for this project and modify your program to do the following:
+Create a new branch in your Exercise 14 project that modifies the Student Line Up program described in Programming Challenge 14 
+so it reads the student names from the file LineUp.txt. 
+The program should read names from the file until there is no more data to read.
+
 */
 
 #include <iostream>
 #include <string>
+#include <fstream>
 using namespace std;
 
 
@@ -31,11 +38,25 @@ string findEnd(string names[], int numQ);
 
 int main()
 {
-    string names[25] = { "Olivia", "Zach", "Leo", "Hannah", "Quinn", "Uma", "Jack", "Vince", "Tina", "Mona", "Xander", "David", "Grace", "Bob", "Alice", "Emma", "Charlie", "Wendy", "Nathan", "Sam", "Paul", "Kate", "Rose", "Frank", "Yaro"};
-    int numQ = -1;
+    string names[25];
+    int numQ = 0;/*
     while (numQ < 1 || numQ > 25) {
         cout << "enter the number of names (1 - 25): ";
-        cin >> numQ;
+    }*/
+
+    ifstream file("LineUp.txt");
+
+    if (file.is_open()) {
+        string firstName;
+        while (getline(file, firstName) && numQ < 25) {
+            cout << firstName << endl;
+            names[numQ] = firstName;
+            numQ++;
+        }
+        file.close();
+    }
+    else {
+        cout << "Failed to open the file." << endl;
     }
     
     cout << findFirst(names, numQ) << " will be at the front of the line" << endl;
