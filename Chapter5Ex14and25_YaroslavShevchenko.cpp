@@ -32,9 +32,12 @@ string findEnd(string names[], int numQ);
 int main()
 {
     string names[25] = { "Olivia", "Zach", "Leo", "Hannah", "Quinn", "Uma", "Jack", "Vince", "Tina", "Mona", "Xander", "David", "Grace", "Bob", "Alice", "Emma", "Charlie", "Wendy", "Nathan", "Sam", "Paul", "Kate", "Rose", "Frank", "Yaro"};
-    int numQ;
-    cout << "enter the number of names (1 - 25): ";
-    cin >> numQ;
+    int numQ = -1;
+    while (numQ < 1 || numQ > 25) {
+        cout << "enter the number of names (1 - 25): ";
+        cin >> numQ;
+    }
+    
     cout << findFirst(names, numQ) << " will be at the front of the line" << endl;
     cout << findEnd(names, numQ) << " will be at the end of the line" << endl;
 }
